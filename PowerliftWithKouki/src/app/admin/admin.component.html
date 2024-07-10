@@ -1,0 +1,84 @@
+
+      <div class="container">
+        <nav>
+          <ul>
+            <li><a href="#" class="logo">
+              <img src="../../assets/adminpfp.jpg">
+              <span class="nav-item">Admin</span>
+            </a></li>
+            <li><a routerLink="/admin">
+              <i class="fas fa-dumbbell"></i>
+              <span class="nav-item">Exercices</span>
+            </a></li>
+            <li><a routerLink="/admin-program">
+              <i class="fas fa-table"></i>
+              <span class="nav-item">Programs</span>
+            </a></li>
+            <li><a href="#">
+              <i class="fas fa-database"></i>
+              <span class="nav-item">Report</span>
+            </a></li>
+            <li><a href="#">
+              <i class="fas fa-chart-bar"></i>
+              <span class="nav-item">Attendance</span>
+            </a></li>
+            <li><a href="#">
+              <i class="fas fa-cog"></i>
+              <span class="nav-item">Setting</span>
+            </a></li>
+    
+            <li><a href="#" class="logout">
+              <i class="fas fa-sign-out-alt"></i>
+              <span class="nav-item">Log out</span>
+            </a></li>
+          </ul>
+        </nav>
+    
+    
+        <section class="main">
+
+          <div class="search-bar">
+            <input type="text" [(ngModel)]="searchQuery" placeholder="Search..." (keyup.enter)="searchExercices()">
+          </div>
+          
+    
+          <section class="main">
+            <div class="attendance-list">
+              <div class="main-top">
+                <h1>Exercice List</h1>
+                <i class="fas fa-plus" (click)="toggleAddExerciseForm()"></i>
+              </div>
+              <div *ngIf="showAddExerciseForm" class="create-course-form">
+                <input type="text" [(ngModel)]="newExercice.name" placeholder="Exercise Name">
+                <input type="text" [(ngModel)]="newExercice.description" placeholder="Exercise description">
+                <select [(ngModel)]="newExercice.difficulty">
+                  <option value="easy">Easy</option>
+                  <option value="medium">Medium</option>
+                  <option value="hard">Hard</option>
+                </select>
+                <button (click)="createExercice()">Create Exercise</button>
+              </div>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Difficulty</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let exercice of exercices">
+                    <td>{{exercice.id}}</td>
+                    <td routerLink="/home">{{exercice.name}}</td>
+                    <td>{{exercice.description}}</td>
+                    <td>{{exercice.difficulty}}</td>
+                    <td><button (click)="deleteExercice(exercice.id)">Delete</button></td>
+                  </tr>
+                </tbody>
+              </table>  
+            </div>
+          </section>
+        </section>
+      </div>
+    

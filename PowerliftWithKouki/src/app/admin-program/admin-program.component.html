@@ -1,0 +1,138 @@
+<div class="container">
+    <nav>
+      <ul>
+        <li><a href="#" class="logo">
+          <img src="../../assets/adminpfp.jpg">
+          <span class="nav-item">Admin</span>
+        </a></li>
+        <li><a routerLink="/admin">
+          <i class="fas fa-dumbbell"></i>
+          <span class="nav-item">Exercices</span>
+        </a></li>
+        <li><a routerLink="/admin-program">
+          <i class="fas fa-table"></i>
+          <span class="nav-item">Programs</span>
+        </a></li>
+        <li><a href="#">
+          <i class="fas fa-database"></i>
+          <span class="nav-item">Report</span>
+        </a></li>
+        <li><a href="#">
+          <i class="fas fa-chart-bar"></i>
+          <span class="nav-item">Attendance</span>
+        </a></li>
+        <li><a href="#">
+          <i class="fas fa-cog"></i>
+          <span class="nav-item">Setting</span>
+        </a></li>
+
+        <li><a href="#" class="logout">
+          <i class="fas fa-sign-out-alt"></i>
+          <span class="nav-item">Log out</span>
+        </a></li>
+      </ul>
+    </nav>
+
+
+    <section class="main">
+
+        <div class="search-bar">
+          <input type="text" [(ngModel)]="searchQuery" placeholder="Search..." (keyup.enter)="searchExercices()">
+        </div>
+
+
+        <section class="main">
+            <div class="program-list">
+              <div class="main-top">
+                <h1>Program List</h1>
+                <i class="fas fa-plus" (click)="toggleCreateProgramForm()"></i>
+
+              </div>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Day</th>
+                    <!-- Loop through weeks to create columns -->
+                    <ng-container *ngFor="let program of programs">
+                      <th *ngFor="let week of program.weeks; let j = index">Week {{ j + 1 }}</th>
+                    </ng-container>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Loop through days -->
+                  <ng-container *ngFor="let program of programs">
+                    <ng-container *ngFor="let week of program.weeks; let j = index">
+                      <ng-container *ngFor="let day of week.days; let k = index">
+                        <tr>
+                          <!-- Day -->
+                          <td>Day {{ k + 1 }}</td>
+                          <!-- Empty cells for previous weeks -->
+                          <ng-container *ngFor="let _ of generateArray(j); let _index = index">
+                            <td></td>
+                          </ng-container>
+                          <!-- Exercises for the current week and day -->
+                          <td *ngFor="let exerciseInstance of day.exerciseInstances">
+                            <div>{{ exerciseInstance.exerciseId }}</div>
+                            <div>Sets: {{ exerciseInstance.sets }}</div>
+                            <div>Reps: {{ exerciseInstance.reps }}</div>
+                            <div>Rest: {{ exerciseInstance.restTimeInSeconds }}s</div>
+                          </td>
+                        </tr>
+                      </ng-container>
+                    </ng-container>
+                  </ng-container>
+                </tbody>
+              </table>
+            </div>
+          </section>
+    
+          <div *ngIf="showCreateProgramForm">
+            <h2>Create Program</h2>
+            <form (submit)="createProgram()">
+              <label for="numWeeks">Number of Weeks:</label>
+              <input type="number" id="numWeeks" [(ngModel)]="numWeeks" name="numWeeks" required>
+              <button type="button" (click)="addWeek()">Add Week</button>
+            
+              <div class="weeks-container">
+                <ng-container *ngFor="let week of weeks; let i = index">
+                  <div class="week-container">
+                    <h3>Week {{ i + 1 }}</h3>
+                    <button type="button" (click)="removeWeek(i)">Remove Week</button>
+                    <div class="week">
+                      <label for="numDays{{ i }}">Number of Days:</label>
+                      <input type="number" id="numDays{{ i }}" [(ngModel)]="weeks[i].numDays" name="numDays{{ i }}" required>
+                      <div *ngFor="let day of generateArray(weeks[i].numDays); let j = index">
+                        <div>
+                          <h4>Day {{ j + 1 }}</h4>
+                          <div class="exercise" *ngFor="let exercise of weeks[i].days[j].exercises; let k = index">
+                            <div>
+                              <label for="exerciseName{{ i }}{{ j }}{{ k }}">Exercise:</label>
+                              <select id="exerciseName{{ i }}{{ j }}{{ k }}" [(ngModel)]="exercise.name" name="exerciseName{{ i }}{{ j }}{{ k }}" required>
+                                <option *ngFor="let fetchedExercise of exercices" [value]="fetchedExercise.id">{{ fetchedExercise.name }}</option>
+                              </select>                                </div>
+                            <div>
+                              <label for="sets{{ i }}{{ j }}{{ k }}">Sets:</label>
+                              <input type="number" id="sets{{ i }}{{ j }}{{ k }}" [(ngModel)]="exercise.sets" name="sets{{ i }}{{ j }}{{ k }}" required>
+                            </div>
+                            <div>
+                              <label for="reps{{ i }}{{ j }}{{ k }}">Reps:</label>
+                              <input type="number" id="reps{{ i }}{{ j }}{{ k }}" [(ngModel)]="exercise.reps" name="reps{{ i }}{{ j }}{{ k }}" required>
+                            </div>
+                            <div>
+                              <label for="rest{{ i }}{{ j }}{{ k }}">Rest (s):</label>
+                              <input type="number" id="rest{{ i }}{{ j }}{{ k }}" [(ngModel)]="exercise.rest" name="rest{{ i }}{{ j }}{{ k }}" required>
+                            </div>
+                          </div>
+                          
+                          <button type="button" (click)="addExercise(i, j)">Add Exercise</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ng-container>
+              </div>
+            
+              <button type="submit">Create Program</button>
+            </form>
+          </div>
+    </section>

@@ -1,0 +1,44 @@
+<!-- src/app/components/login/login.component.html -->
+<header class="header">
+    <a href="#" class="logo">
+        <i class="fas fa-dumbbell"></i>Powerlift with Kouki
+    </a>
+    <nav class="navbar">
+        <a href="#">Home</a>
+        <a href="#">Services</a>
+        <a href="#">Contact</a>
+        <a href="#">Pricing</a>
+        <a href="#">|</a>
+        <a href="#">Login</a>
+        <a routerLink="/signup" class="btn">Sign Up</a>
+    </nav>
+</header>
+
+<div class="login-box">
+    <div class="login-header">
+        <header>Login</header>
+    </div>
+    <form (submit)="login()">
+        <div class="input-box">
+            <input type="text" class="input-field" placeholder="Username" [(ngModel)]="user.username" name="username" autocomplete="off" required>
+        </div>
+        <div class="input-box">
+            <input type="password" class="input-field" placeholder="Password" [(ngModel)]="user.password" name="password" autocomplete="off" required>
+        </div>
+        <div class="forgot">
+            <section>
+                <input type="checkbox" id="check">
+                <label for="check">Remember me</label>
+            </section>
+            <section>
+                <a href="#">Forgot password</a>
+            </section>
+        </div>
+        <div class="input-submit">
+            <button type="submit" class="submit-btn" id="submit">Sign In</button>
+        </div>
+    </form>
+    <div class="sign-up-link">
+        <p>Don't have an account? <a routerLink="/signup">Sign Up</a></p>
+    </div>
+</div>

@@ -1,0 +1,203 @@
+
+<body>
+    
+
+
+    <header>
+        <div class="header-container">
+            <div class="header-wrapper">
+                <div class="logoBox">
+                    <img src="../../assets/logo.png" alt="logo">
+                </div>
+                <div class="searchBox">
+                    <input type="search">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="iconBox1">
+                    <i class="fas fa-house" routerLink="/home"></i>
+                    <i class="fa-solid fa-user-group"></i>
+                    <i class="fa-solid fa-video"></i>
+                </div>
+                <div class="iconBox2">
+                    <i class="fa-solid fa-circle-plus" routerLink="/createpost"></i>
+                    <i class="fa-brands fa-facebook-messenger"></i>
+                    <i class="fa-solid fa-bell"></i>
+                    <label><img src="../../assets/user.jpg" alt="user"></label>
+                    <i class="fa-solid fa-caret-down"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+<!-- header section end -->
+<!-- home section start -->
+
+
+<div class="home">
+    <div class="container">
+        <div class="home-weapper">
+
+            <!-- home left start here -->
+            <div class="home-left">
+
+                <div class="profile">
+                    <img src="../../assets/user.jpg" alt="user">
+                    <h3>Ahmed Kouki</h3>
+                </div>
+               
+                
+
+
+                <div class="games">
+                    <h4 class="mini-headign">AI FEAUTURES</h4>
+                    <label>
+                        <img src="../../assets/program.png" alt="game01">
+                        <span>Create a program</span>
+                    </label>
+                    <label routerLink="/critiqueform">
+                        <img src="../../assets/critique.png" alt="game02">
+                        <span>Critique your form</span>
+                    </label>
+                    <button class="see-more-btn">See more <i class="fa-solid fa-angle-down"></i></button>
+                </div>
+
+                <div class="explore">
+                    <h4 class="mini-headign">Explore</h4>
+                   
+                    <a href="#"><i class="fa-solid fa-user-group"></i> Group</a>
+                    <a href="#"><i class="fa-solid fa-star"></i> Favorites</a>
+                    <a href="#"><i class="fa-solid fa-bookmark"></i> Saves</a>
+                    <a href="#"><i class="fa-solid fa-clock"></i> Events</a>
+
+                    <div><label class="darkTheme"> <span></span></label > Apply Dark Theme</div>
+
+                    <button class="see-more-btn">See more <i class="fa-solid fa-angle-down"></i></button>
+                </div>
+                
+            </div><!-- home left end here -->
+
+            <!-- home center start here -->
+
+            <div class="home-center">
+                <div class="home-center-wrapper">
+                    
+
+
+                    <div class="createPost">
+                        <h3 class="mini-heading">Create Post</h3>
+                        <div class="post-text">
+                          <img src="../../assets/user.jpg" alt="user">
+                          <input #titleInput type="text" placeholder="Title">
+                        </div>
+                        <div class="post-text">
+                          <input #bodyInput type="text" placeholder="Body">
+                        </div>
+                        <div class="post-icon">
+                          <a href="#" style="background: #ffebed;">
+                            <i style="background: #ff4154;" class="fa-solid fa-camera"></i>
+                            Gallery
+                          </a>
+                          <a href="#" style="background: #ccdcff;">
+                            <i style="background: #0053ff;" class="fa-solid fa-video"></i>
+                            Video
+                          </a>
+                          <a style="background: #fff4d1; text-decoration: none;" (click)="createPost(titleInput.value, bodyInput.value)">
+                            <i style="background: #73ff28;" class="fa-solid fa-share"></i>
+                            Share Post
+                          </a>
+                        </div>
+                      </div>
+                      
+
+                </div> <!-- home center wrapper end -->
+            </div> <!-- home center end -->
+
+            <div class="home-right">
+                <div class="home-right-wrapper">
+
+                    <div class="event-friend">
+                        <div class="event">
+                            <h3 class="heading">Upcoming Meets <span>see all</span></h3>
+                            <img src="../../assets/meet.png" alt="event-img">
+                            <div class="event-date">
+                                <h3>21 <b>july</b></h3>
+                                <h4>United state of America <span>New York City</span></h4>
+                            </div>
+                            <button><i class="fa-regular fa-star"></i> interested</button>
+                        </div>
+
+                        <hr>
+                    
+                        <div class="friend">
+                            <h3 class="heading">Friend Requests <span>see all</span></h3>
+                            <ul>
+                                <li><img src="../../assets/user2.jpg" alt="user"></li>
+                                <li>
+                                    <b>yosr ghariani</b>
+                                    <p>max bench = 30kg (dont accept her shes below average)</p>
+                                    <button>confirm</button><button class="friend-remove">remove</button>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                   
+
+                    <div class="messenger">
+                        <div class="messenger-search">
+                            <i class="fa-solid fa-user-group"></i>
+                            <h4>Messenger</h4>
+                            <input type="search" placeholder="Search">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </div>
+                        <ul>
+                            <li>
+                                <img src="../../assets/us2.png" alt="user">
+                                <b>BLEUGH <span>Online</span></b>
+                                <i class="fa-brands fa-telegram"></i>
+                            </li>
+
+                            <li>
+                                <img src="../../assets/us3.png" alt="user">
+                                <b>BLEUGH <span>Offline</span></b>
+                                <i class="fa-brands fa-telegram"></i>
+                            </li>
+
+                            <li>
+                                <img src="../../assets/us4.png" alt="user">
+                                <b>BLEUGH <span>Online</span></b>
+                                <i class="fa-brands fa-telegram"></i>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div><!-- home right wrapper end -->
+            </div><!-- home right end -->
+
+
+
+
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- home section end -->
+
+<script>
+    var darkButton = document.querySelector(".darkTheme");
+
+    darkButton.onclick = function(){
+        darkButton.classList.toggle("button-Active");
+        document.body.classList.toggle("dark-color")
+    }
+
+</script>
+
+</body>

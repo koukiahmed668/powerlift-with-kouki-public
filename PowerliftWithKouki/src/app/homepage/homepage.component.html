@@ -1,0 +1,245 @@
+<body>
+    <header>
+        <div class="header-container">
+            <div class="header-wrapper">
+                <div class="logoBox">
+                    <img src="../../assets/logo.png" alt="logo">
+                </div>
+                <div class="searchBox">
+                    <input type="search">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="iconBox1">
+                    <i class="fas fa-house" routerLink="/home"></i>
+                    <i class="fa-solid fa-user-group"></i>
+                    <i class="fa-solid fa-video"></i>
+                </div>
+                <div class="iconBox2">
+                    <i class="fa-solid fa-circle-plus" routerLink="/createpost"></i>
+                    <i class="fa-brands fa-telegram"></i>
+                    <i class="fa-solid fa-bell"></i>
+                    <label><img src="../../assets/user.jpg" alt="user"></label>
+                    <i class="fa-solid fa-caret-down"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- header section end -->
+    <!-- home section start -->
+
+    <div class="home">
+        <div class="container">
+            <div class="home-weapper">
+
+                <!-- home left start here -->
+                <div class="home-left">
+                    <div class="profile">
+                        <img src="../../assets/user.jpg" alt="user">
+                        <h3>Ahmed Kouki</h3>
+                    </div>
+
+                    <div class="games">
+                        <h4 class="mini-headign">AI FEATURES</h4>
+                        <label>
+                            <img src="../../assets/program.png" alt="game01">
+                            <span>Create a program</span>
+                        </label>
+                        <label routerLink="/critiqueform">
+                            <img src="../../assets/critique.png" alt="game02">
+                            <span>Critique your form</span>
+                        </label>
+                        <button class="see-more-btn">See more <i class="fa-solid fa-angle-down"></i></button>
+                    </div>
+
+                    <div class="explore">
+                        <h4 class="mini-headign">Explore</h4>
+                        <a href="#"><i class="fa-solid fa-user-group"></i> Group</a>
+                        <a href="#"><i class="fa-solid fa-star"></i> Favorites</a>
+                        <a href="#"><i class="fa-solid fa-bookmark"></i> Saves</a>
+                        <a href="#"><i class="fa-solid fa-clock"></i> Events</a>
+
+                        <div>
+                            <label class="darkTheme"> <span></span></label> Apply Dark Theme
+                        </div>
+
+                        <button class="see-more-btn">See more <i class="fa-solid fa-angle-down"></i></button>
+                    </div>
+                </div>
+                <!-- home left end here -->
+
+                <!-- home center start here -->
+                <div class="home-center">
+                    <div class="home-center-wrapper">
+                        <div class="fb-post1">
+                            <div class="fb-post1-container">
+                                <div class="fb-post1-header">
+                                    <ul>
+                                        <li class="active">popular</li>
+                                        <li>recent</li>
+                                        <li>most view</li>
+                                    </ul>
+                                </div>
+                                <div class="fb-p1-main">
+                                    <div class="post-author">
+                                        <img src="../../assets/user.jpg" alt="user picture">
+                                        <ul>
+                                            <li><h3>Ahmed Kouki <span> . 2 hours ago</span></h3></li>
+                                            <li><span>02 March at 12:55 PM</span></li>
+                                        </ul>
+                                        <p>How much u bench bro</p>
+                                    </div>
+
+                                    <div class="post-images">
+                                        <div class="post-images1">
+                                            <img src="../../assets/pp.jpg" alt="post images 01">
+                                        </div>
+                                        <div class="post-images1">
+                                            <img src="../../assets/pp2.jpeg" alt="post images 02">
+                                        </div>
+                                    </div>
+
+                                    <div class="like-comment">
+                                        <ul>
+                                            <li>
+                                                <img src="../../assets/love.png" alt="love">
+                                                <img src="../../assets/like.png" alt="like">
+                                                <span>22k like</span>
+                                            </li>
+                                            <li><i class="fa-regular fa-comment-dots"></i> <span>555 comments</span></li>
+                                            <li><i class="fa-solid fa-share-from-square"></i> <span>254 share</span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <br>
+                        
+                            </div>
+                        </div>
+
+                        <div *ngFor="let post of posts" class="fb-post1">
+                            <div class="fb-post1-container">
+
+                                <div class="post-options-container" *ngIf="post.id !== undefined"  (click)="toggleMenu(post.id)">
+                                    <i class="fas fa-ellipsis-v post-options"></i>
+                                </div>
+                                  <!-- Post menu dropdown -->
+                                <div class="post-menu" *ngIf="post.id === activePostId">
+                                    <button (click)="deletePost(post.id)">Delete</button>
+                                    <button (click)="editPost(post.id)">Edit</button>
+                                    <!-- Add more buttons as needed -->
+                                </div>
+
+                                
+                                <div class="fb-p1-main">
+                                    <div class="post-author">
+                                        <img src="../../assets/user.jpg" alt="user picture">
+                                        <ul>
+                                            <li><h3>{{ post.userFirstName }} {{ post.userLastName }} </h3></li>
+                                            <li><span>{{ post.timestamp | date:'medium' }}</span></li>
+
+                                        </ul>
+                                    </div>
+                                    <div class="post-title">
+                                        <p>{{ post.title }}</p>
+                                    </div>
+
+                                    <div class="post-body">
+                                        <p>{{ post.body }}</p>
+                                    </div>
+                                    <!--
+                                    <div class="post-images" *ngIf="post.images && post.images.length">
+                                        <div *ngFor="let image of post.images" class="post-images1">
+                                            <img [src]="image" alt="post image">
+                                        </div>
+                                    </div>
+                                    -->
+                                    <div class="like-comment">
+                                        <ul>
+                                            <li>
+                                                <img src="../../assets/love.png" alt="love">
+                                                <img src="../../assets/like.png" alt="like">
+                                                <span>22k like</span>
+                                            </li>
+                                            <li><i class="fa-regular fa-comment-dots"></i> <span>555 comments</span></li>
+                                            <li><i class="fa-solid fa-share-from-square"></i> <span>254 share</span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- home center wrapper end -->
+                </div> <!-- home center end -->
+
+                <div class="home-right">
+                    <div class="home-right-wrapper">
+                        <div class="event-friend">
+                            <div class="event">
+                                <h3 class="heading">Upcoming Meets <span>see all</span></h3>
+                                <img src="../../assets/meet.png" alt="event-img">
+                                <div class="event-date">
+                                    <h3>21 <b>July</b></h3>
+                                    <h4>United States of America <span>New York City</span></h4>
+                                </div>
+                                <button><i class="fa-regular fa-star"></i> Interested</button>
+                            </div>
+
+                            <hr>
+
+                            <div class="friend">
+                                <h3 class="heading">Friend Requests <span>see all</span></h3>
+                                <ul>
+                                    <li><img src="../../assets/user2.jpg" alt="user"></li>
+                                    <li>
+                                        <b>Yosr Ghariani</b>
+                                        <p>max bench = 30kg (don't accept her she's below average)</p>
+                                        <button>Confirm</button>
+                                        <button class="friend-remove">Remove</button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="messenger">
+                            <div class="messenger-search">
+                                <i class="fa-solid fa-user-group"></i>
+                                <h4>Messenger</h4>
+                                <input type="search" placeholder="Search">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </div>
+                            <ul>
+                                <li>
+                                    <img src="../../assets/us2.png" alt="user">
+                                    <b>BLEUGH <span>Online</span></b>
+                                    <i class="fa-brands fa-telegram"></i>
+                                </li>
+
+                                <li>
+                                    <img src="../../assets/us3.png" alt="user">
+                                    <b>BLEUGH <span>Offline</span></b>
+                                    <i class="fa-brands fa-telegram"></i>
+                                </li>
+
+                                <li>
+                                    <img src="../../assets/us4.png" alt="user">
+                                    <b>BLEUGH <span>Online</span></b>
+                                    <i class="fa-brands fa-telegram"></i>
+                                </li>
+                            </ul>
+                        </div>
+                    </div><!-- home right wrapper end -->
+                </div><!-- home right end -->
+            </div>
+        </div>
+    </div>
+
+    <!-- home section end -->
+
+    <script>
+        var darkButton = document.querySelector(".darkTheme");
+
+        darkButton.onclick = function () {
+            darkButton.classList.toggle("button-Active");
+            document.body.classList.toggle("dark-color")
+        }
+    </script>
+</body>
